@@ -1,36 +1,49 @@
 services:
   nginx:
-    build: ./nginx
+    build: ./requirements/nginx
     ports:
       - "443:443"
-      - "80:80"
-    restart: always
     env_file:
       - .env
+    restart: always
+    volumes:
+      - wordpress:/var/www/html
     networks:
       inception:
         ipv4_address: 192.168.42.42
   wordpress:
-    build: ./wordpress
+    build: ./requirements/wordpress
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - wordpress:/var/www/html
     networks:
       inception:
         ipv4_address: 192.168.42.43
   mariadb:
-    build: ./mariadb
-    # volumes:
-    #   - mariadb_data:/var/lib/mysql
-    ports:
-      - "4444:3306"
-    environment:
-      - MYSQL_ROOT_PASSWORD=a
-      - MYSQL_DATABASE=wordpress
-      - MYSQL_USER=wpuser
-      - MYSQL_PASSWORD=wppassword
+    build: ./requirements/mariadb
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - mariadb:/var/lib/mysql
     networks:
       inception:
         ipv4_address: 192.168.42.44
-# volumes:
-#   mariadb_data:
+volumes:
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${HOME}/data/mariadb
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${HOME}/data/wordpress
 networks:
   inception:
     driver: bridge
