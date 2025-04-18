@@ -1,4 +1,4 @@
-FROM alpine:3.21.3
+FROM alpine:3.20.6
 RUN apk update && apk add --no-cache nginx
 RUN adduser -D -g 'www' www
 RUN mkdir /www && chown -R www:www /var/lib/nginx && chown -R www:www /www
