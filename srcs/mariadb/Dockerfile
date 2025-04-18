@@ -1,9 +1,9 @@
 FROM alpine:3.20.6
-RUN apk update && apk add --no-cache mariadb mariadb-client
+RUN apk add --no-cache mariadb mariadb-client tini
 
 # Create necessary directories
-RUN mkdir -p /run/mysqld /docker-entrypoint-initdb.d
-RUN chown -R mysql:mysql /run/mysqld /var/lib/mysql
+RUN mkdir -p /run/mysqld /docker-entrypoint-initdb.d \
+ && chown -R mysql:mysql /run/mysqld /var/lib/mysql
 
 # Copy configuration
 COPY conf/my.cnf /etc/my.cnf
@@ -15,6 +15,8 @@ RUN chmod +x /docker-entrypoint-initdb.d/init-db.sh
 EXPOSE 3306
 
 # Use an entrypoint script to initialize DB and start MariaDB
-COPY tools/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+COPY entrypoint.sh /usr/bin/docker-entrypoint.sh
+RUN chmod +x /usr/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["/sbin/tini","--","docker-entrypoint.sh"]
+CMD ["mariadbd","--console"]
