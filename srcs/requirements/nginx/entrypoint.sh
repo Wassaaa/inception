@@ -18,7 +18,7 @@ if [ ! -f "$SSL_CRT" ] || [ ! -f "$SSL_KEY" ]; then
   chmod 600 "$SSL_KEY" "$SSL_CRT"
 fi
 
-envsubst '$$SERVER_NAME $SSL_CRT $SSL_KEY' < /etc/nginx/nginx.conf > /tmp/nginx.conf
+envsubst '$$SERVER_NAME $SSL_CRT $SSL_KEY $WP_PATH' < /etc/nginx/nginx.conf > /tmp/nginx.conf
 mv /tmp/nginx.conf /etc/nginx/nginx.conf
 
 echo ">> Starting Nginx ($*)"
