@@ -2,15 +2,16 @@ services:
   nginx:
     build: ./nginx
     ports:
-      - "443:80"
+      - "443:443"
+      - "80:80"
     restart: always
+    env_file:
+      - .env
     networks:
       inception:
         ipv4_address: 192.168.42.42
   wordpress:
     build: ./wordpress
-    ports:
-      - "444:80"
     networks:
       inception:
         ipv4_address: 192.168.42.43
@@ -32,7 +33,7 @@ services:
 #   mariadb_data:
 networks:
   inception:
+    driver: bridge
     ipam:
-      driver: default
       config:
       - subnet: "192.168.42.0/24"
