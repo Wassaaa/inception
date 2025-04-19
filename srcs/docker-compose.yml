@@ -11,8 +11,7 @@ services:
     volumes:
       - wordpress:/var/www/html
     networks:
-      inception:
-        ipv4_address: 192.168.42.42
+      - inception
   wordpress:
     build: ./requirements/wordpress
     depends_on:
@@ -23,8 +22,7 @@ services:
     volumes:
       - wordpress:/var/www/html
     networks:
-      inception:
-        ipv4_address: 192.168.42.43
+      - inception
   mariadb:
     build: ./requirements/mariadb
     env_file:
@@ -33,8 +31,7 @@ services:
     volumes:
       - mariadb:/var/lib/mysql
     networks:
-      inception:
-        ipv4_address: 192.168.42.44
+      - inception
 volumes:
   mariadb:
     driver: local
@@ -51,6 +48,3 @@ volumes:
 networks:
   inception:
     driver: bridge
-    ipam:
-      config:
-      - subnet: "192.168.42.0/24"

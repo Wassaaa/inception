@@ -19,7 +19,7 @@ COPY conf/index.html /www/
 COPY entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-EXPOSE 80 443
+EXPOSE 443
 
 # tini becomes PID 1 → handles signals ↔ nginx quits cleanly
 ENTRYPOINT ["/sbin/tini","--","docker-entrypoint.sh"]
