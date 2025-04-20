@@ -1,38 +1,31 @@
 FROM alpine:3.20.6
-RUN apk add --no-cache tini mariadb-client \
-    php83 \
-	php83-fpm \
-    # WordPress required
-	php83-phar \
-    php83-curl \
-	php83-mysqli \
-	php83-iconv \
-	php83-json \
-	php83-dom \
-	php83-xml \
-	php83-exif \
-    php83-openssl \
-	php83-zip \
-    # Recommended extras
-    php83-intl \
-	php83-mbstring \
-	php83-gd \
-	php83-fileinfo \
-    php83-session
 
-# Configure PHP‑FPM to listen on port 9000 and set user to match nginx
-RUN sed -i 's|listen = .*|listen = 9000|' /etc/php83/php-fpm.d/www.conf
-RUN sed -i 's|user = .*|user = www|' /etc/php83/php-fpm.d/www.conf
-RUN sed -i 's|group = .*|group = www|' /etc/php83/php-fpm.d/www.conf
+RUN adduser -D -H -s /sbin/nologin -g www-data www-data
 
-RUN sed -i 's|memory_limit = .*|memory_limit = 512M|' /etc/php83/php.ini
-RUN sed -i 's|output_buffering = .*|output_buffering = on|' /etc/php83/php.ini
+RUN apk add --no-cache tini mariadb-client curl \
+    php82 \
+	php82-mysqli \
+	php82-fpm \
+    php82-curl \
+	php82-gd \
+    php82-intl \
+	php82-mbstring \
+	php82-soap \
+	php82-xml \
+	php82-xmlrpc \
+	php82-zip \
+	php82-dom \
+	php82-exif \
+    php82-openssl \
+	php82-phar
+
+# PHP‑FPM config
+RUN mkdir -p /run/php && chown -R www-data:www-data /run/php
+COPY conf/www.conf /etc/php82/php-fpm.d/www.conf
 
 # Copy entrypoint script
 COPY ./entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
-RUN adduser -D -H -s /sbin/nologin -g www www
 
 EXPOSE 9000
 
