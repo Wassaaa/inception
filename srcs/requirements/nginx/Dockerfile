@@ -1,19 +1,15 @@
 FROM alpine:3.20.6
 
+RUN adduser -D -H -s /sbin/nologin -G www-data www-data
+
 RUN apk add --no-cache \
         nginx \
         openssl \
         tini \
         gettext
 
-# Non‑root user (“www”) and basic dirs
-RUN adduser -D -g 'www' www \
- && mkdir -p /www /var/cache/nginx \
- && chown -R www:www /www /var/cache/nginx
-
- # Nginx config & static files
+ # Nginx config
 COPY conf/nginx.conf /etc/nginx/nginx.conf
-COPY conf/index.html /www/
 
 # Entrypoint script
 COPY entrypoint.sh /usr/local/bin/docker-entrypoint.sh
