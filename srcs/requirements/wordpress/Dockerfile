@@ -21,7 +21,6 @@ RUN apk add --no-cache tini mariadb-client curl \
 
 RUN adduser -D -H -s /sbin/nologin -G www-data www-data
 # PHP‑FPM config
-RUN mkdir -p /run/php && chown -R www-data:www-data /run/php
 COPY conf/www.conf /etc/php${PHP_VERSION}/php-fpm.d/www.conf
 
 # Symlink the php${PHP_VERSION} to just php for some scripts
@@ -39,6 +38,7 @@ RUN wget -q https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
  && chmod +x /usr/local/bin/wp-cli.phar \
  && ln -s /usr/local/bin/wp-cli.phar /usr/local/bin/wp
 
+EXPOSE 9000
 # tini becomes PID 1 → handles signals ↔ nginx quits cleanly
 ENTRYPOINT ["/sbin/tini","--","docker-entrypoint.sh"]
 # Default command ‑ may be overridden by `docker run … nginx -T`

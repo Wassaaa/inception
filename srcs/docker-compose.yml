@@ -12,7 +12,6 @@ services:
     restart: always
     volumes:
       - wordpress:/var/www/html
-      - php-socket:/run/php
     networks:
       - inception
   wordpress:
@@ -26,7 +25,6 @@ services:
     restart: always
     volumes:
       - wordpress:/var/www/html
-      - php-socket:/run/php
     networks:
       - inception
   mariadb:
@@ -53,11 +51,6 @@ volumes:
       type: none
       o: bind
       device: ${HOME}/data/wordpress
-  php-socket:
-    driver: local
-    driver_opts:
-      type: tmpfs
-      device: tmpfs
 networks:
   inception:
     driver: bridge
