@@ -8,8 +8,11 @@ RUN apk add --no-cache \
         tini \
         gettext
 
- # Nginx config
+# Nginx config
 COPY conf/nginx.conf /etc/nginx/nginx.conf
+
+# Create socket directory for PHP-FPM
+RUN mkdir -p /run/php && chown www-data:www-data /run/php
 
 # Entrypoint script
 COPY entrypoint.sh /usr/local/bin/docker-entrypoint.sh
@@ -17,8 +20,5 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 EXPOSE 443
 
-# tini becomes PID 1 → handles signals ↔ nginx quits cleanly
 ENTRYPOINT ["/sbin/tini","--","docker-entrypoint.sh"]
-
-# Default command ‑ may be overridden by `docker run … nginx -T`
 CMD ["nginx","-g","daemon off;"]

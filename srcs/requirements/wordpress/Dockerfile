@@ -33,8 +33,6 @@ RUN echo "memory_limit = 512M" >> /etc/php${PHP_VERSION}/php.ini
 COPY ./entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-EXPOSE 9000
-
 # download and symlink wp-cli to wp
 RUN wget -q https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
         -O /usr/local/bin/wp-cli.phar \
