@@ -1,6 +1,8 @@
 services:
   nginx:
+    container_name: nginx
     build: ./requirements/nginx
+    image: nginx:hive
     depends_on:
       - wordpress
     ports:
@@ -13,7 +15,9 @@ services:
     networks:
       - inception
   wordpress:
+    container_name: wordpress
     build: ./requirements/wordpress
+    image: wordpress:hive
     depends_on:
       - mariadb
     env_file:
@@ -24,7 +28,9 @@ services:
     networks:
       - inception
   mariadb:
+    container_name: mariadb
     build: ./requirements/mariadb
+    image: mariadb:hive
     env_file:
       - .env
     restart: always
