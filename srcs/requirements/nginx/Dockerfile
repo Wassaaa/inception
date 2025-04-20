@@ -8,16 +8,6 @@ RUN apk add --no-cache \
 
 # Nginx config
 COPY conf/nginx.conf /etc/nginx/nginx.conf
-RUN adduser -D -H -s /sbin/nologin -G www-data www-data
-RUN mkdir -p \
-      /var/log/nginx \
-      /var/lib/nginx \
-    && chown -R www-data:www-data \
-      /var/log/nginx \
-      /var/lib/nginx
-
-# Create socket directory for PHP-FPM
-RUN mkdir -p /run/php && chown www-data:www-data /run/php
 
 # Entrypoint script
 COPY entrypoint.sh /usr/local/bin/docker-entrypoint.sh

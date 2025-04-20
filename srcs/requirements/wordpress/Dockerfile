@@ -1,7 +1,5 @@
 FROM alpine:3.20.6
 
-RUN adduser -D -H -s /sbin/nologin -G www-data www-data
-
 ARG PHP_VERSION=83
 
 RUN apk add --no-cache tini mariadb-client curl \
@@ -20,11 +18,13 @@ RUN apk add --no-cache tini mariadb-client curl \
     php${PHP_VERSION}-openssl \
 	php${PHP_VERSION}-phar
 
+
+RUN adduser -D -H -s /sbin/nologin -G www-data www-data
 # PHP‑FPM config
 RUN mkdir -p /run/php && chown -R www-data:www-data /run/php
 COPY conf/www.conf /etc/php${PHP_VERSION}/php-fpm.d/www.conf
 
-# Symlink the php${PHP_VERSION} to just php also for some scripts
+# Symlink the php${PHP_VERSION} to just php for some scripts
 RUN [ ! -e /usr/bin/php ] && ln -s /usr/bin/php${PHP_VERSION} /usr/bin/php || true
 RUN [ ! -e /usr/bin/php-fpm ] && ln -s /usr/sbin/php-fpm${PHP_VERSION} /usr/bin/php-fpm || true
 RUN echo "memory_limit = 512M" >> /etc/php${PHP_VERSION}/php.ini
