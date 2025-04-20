@@ -38,6 +38,13 @@ services:
       - mariadb:/var/lib/mysql
     networks:
       - inception
+  redis:
+    container_name: redis
+    build: ./bonus/redis
+    image: redis:hive
+    restart: always
+    networks:
+      - inception
 volumes:
   mariadb:
     driver: local

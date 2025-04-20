@@ -34,7 +34,7 @@ volumes:
 
 run:
 	@if [ -z "$(filter-out $@,$(MAKECMDGOALS))" ]; then \
-		echo "Usage: make debug <service>"; \
+		echo "Usage: make run <service>"; \
 	else \
 		SVC=$(filter-out $@,$(MAKECMDGOALS)) && \
 		$(DOCKER_COMPOSE) run --rm $$SVC ash; \
