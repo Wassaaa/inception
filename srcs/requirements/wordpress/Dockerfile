@@ -26,6 +26,7 @@ RUN sed -i 's|user = .*|user = www|' /etc/php83/php-fpm.d/www.conf
 RUN sed -i 's|group = .*|group = www|' /etc/php83/php-fpm.d/www.conf
 
 RUN sed -i 's|memory_limit = .*|memory_limit = 512M|' /etc/php83/php.ini
+RUN sed -i 's|output_buffering = .*|output_buffering = on|' /etc/php83/php.ini
 
 # Copy entrypoint script
 COPY ./entrypoint.sh /usr/local/bin/docker-entrypoint.sh
