@@ -5,8 +5,6 @@ services:
     image: nginx:hive
     depends_on:
       - wordpress
-    ports:
-      - "443:443"
     env_file:
       - .env
     restart: always
@@ -14,12 +12,15 @@ services:
       - wordpress:/var/www/html
     networks:
       - inception
+    ports:
+      - "443:443"
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress
     image: wordpress:hive
     depends_on:
       - mariadb
+      - redis
     env_file:
       - .env
     restart: always
@@ -45,6 +46,20 @@ services:
     restart: always
     networks:
       - inception
+  ftp:
+    container_name: ftp
+    build: ./bonus/ftp
+    image: ftp:hive
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - wordpress:/var/www/html
+    networks:
+      - inception
+    ports:
+      - "21:21"
+      - "21000-21010:21000-21010"
 volumes:
   mariadb:
     driver: local
