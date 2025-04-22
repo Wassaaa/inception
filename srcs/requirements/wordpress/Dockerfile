@@ -16,6 +16,9 @@ RUN apk add --no-cache tini mariadb-client curl \
 	php${PHP_VERSION}-dom \
 	php${PHP_VERSION}-exif \
     php${PHP_VERSION}-openssl \
+    php${PHP_VERSION}-redis \
+    php${PHP_VERSION}-tokenizer \
+    php${PHP_VERSION}-ctype \
 	php${PHP_VERSION}-phar
 
 

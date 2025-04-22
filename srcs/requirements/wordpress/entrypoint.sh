@@ -43,12 +43,25 @@ if [ ! -f wp-config.php ]; then
 		--role=author \
 		--user_pass="${WP_PASS}" \
 		--allow-root
+
+	echo "installing theme..."
+		wp theme install neve --allow-root
+		wp theme activate neve --allow-root
+		wp theme update neve --allow-root
+
     else
         echo "User ${WP_USER} already exists, skipping creation."
     fi
 else
     echo "WordPress is already setup."
 fi
+
+echo "Installing and activating plugins..."
+	wp plugin install redis-cache --allow-root
+	wp plugin activate redis-cache --allow-root
+	wp config set WP_REDIS_HOST "redis" --allow-root
+	wp config set WP_REDIS_PORT 6379 --allow-root
+	wp redis enable --allow-root
 
 echo "Setting permissions and owners..."
 chown -R www-data:www-data ${WP_PATH}
