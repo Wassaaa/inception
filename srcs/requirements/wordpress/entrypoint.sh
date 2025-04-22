@@ -65,7 +65,8 @@ echo "Installing and activating plugins..."
 
 echo "Setting permissions and owners..."
 chown -R www-data:www-data ${WP_PATH}
-chmod -R 755 ${WP_PATH}
+chmod -R 775 ${WP_PATH}
+chmod g+s ${WP_PATH}
 
 echo ">> Starting PHP-FPM ($*)"
 exec "$@"
