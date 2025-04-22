@@ -25,7 +25,12 @@ ps:
 	@$(DOCKER_COMPOSE) ps
 
 logs:
-	@$(DOCKER_COMPOSE) logs
+	@if [ -z "$(filter-out $@,$(MAKECMDGOALS))" ]; then \
+		$(DOCKER_COMPOSE) logs; \
+	else \
+		SVC=$(filter-out $@,$(MAKECMDGOALS)) && \
+		$(DOCKER_COMPOSE) logs $$SVC; \
+	fi
 
 volumes:
 	docker volume ls
