@@ -67,6 +67,13 @@ services:
     restart: always
     networks:
       - inception
+  static:
+    container_name: static
+    build: ./bonus/static
+    image: static:hive
+    restart: always
+    networks:
+      - inception
 volumes:
   mariadb:
     driver: local

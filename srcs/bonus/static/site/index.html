@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Allar Klein – CV</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Montserrat font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Montserrat', sans-serif; }
+    .skill-pill { @apply bg-sky-600 text-white px-3 py-1 rounded-full whitespace-nowrap text-sm font-medium; }
+    .section-title { @apply text-lg font-semibold uppercase tracking-wide mb-4; }
+    .timeline-dot { @apply w-3 h-3 rounded-full absolute -left-1.5 top-2; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-white text-gray-800">
+  <main class="max-w-5xl mx-auto md:grid md:grid-cols-3 gap-8 p-6">
+    <!-- Sidebar -->
+    <aside class="md:col-span-1 space-y-8">
+      <section>
+        <img src="image.png" alt="Allar Klein" class="rounded-xl shadow-lg w-full" />
+        <h1 class="text-2xl font-bold mt-4">Allar Klein</h1>
+        <p class="text-sky-700 font-medium">Software Engineer</p>
+        <p class="mt-2 text-sm">Vantaa, Finland<br>+358 40 163 3170<br><a href="mailto:allarklein@gmail.com" class="text-sky-600">allarklein@gmail.com</a></p>
+      </section>
+
+      <section>
+        <h2 class="section-title text-sky-700">Summary</h2>
+        <p class="text-sm leading-relaxed">Self‑taught gamer‑modder turned Hive Helsinki student with 10+ years of scripting (Lua, Python, JS/TS) and growing systems‑level C/C++. From multi‑storey ventilation installs to full‑stack passion projects, I bring a builder’s grit and a hacker’s curiosity to junior roles in game development, DevOps or low‑level engineering.</p>
+      </section>
+
+      <section>
+        <h2 class="section-title text-sky-700">Skills</h2>
+        <div class="flex flex-wrap gap-2">
+          <span class="skill-pill">C / C++</span>
+          <span class="skill-pill">Python</span>
+          <span class="skill-pill">JavaScript / TypeScript</span>
+          <span class="skill-pill">Lua</span>
+          <span class="skill-pill">Docker & Compose</span>
+          <span class="skill-pill">NixOS</span>
+          <span class="skill-pill">Nginx</span>
+          <span class="skill-pill">Redis</span>
+          <span class="skill-pill">MySQL</span>
+          <span class="skill-pill">Git</span>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title text-sky-700">Certificates</h2>
+        <ul class="list-disc list-inside text-sm space-y-1">
+          <li>First Aid Certification (2008)</li>
+          <li>Youth Coding Hon. Mention (2009)</li>
+          <li>Estonian OSH Card (2012)</li>
+          <li>Finnish Work‑Security Card (2014)</li>
+          <li>Electrical Safety Basics (2015)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="section-title text-sky-700">Hobbies</h2>
+        <p class="text-sm">Coding • Scripting • PC Building • Online Gaming • Guitar • Music Production</p>
+      </section>
+    </aside>
+
+    <!-- Main content -->
+    <section class="md:col-span-2 space-y-12 mt-10 md:mt-0">
+      <!-- Work experience -->
+      <section>
+        <h2 class="section-title text-blue-700">Work Experience</h2>
+        <div class="relative pl-6 border-l-2 border-blue-200 space-y-8">
+          <div class="relative">
+            <span class="timeline-dot bg-blue-600"></span>
+            <h3 class="font-semibold">Ventilation Installer – Nord‑Est Partners OY</h3>
+            <span class="text-sm text-blue-600">Sep 2013 – Present • Helsinki</span>
+            <p class="text-sm mt-2">Planning and installing large‑scale ventilation systems across Helsinki. Provide ad‑hoc IT support to office staff.</p>
+          </div>
+          <div class="relative">
+            <span class="timeline-dot bg-blue-600"></span>
+            <h3 class="font-semibold">IT Support – Sidose Seadmete OÜ</h3>
+            <span class="text-sm text-blue-600">Jan 2011 – May 2012 • Tallinn</span>
+            <p class="text-sm mt-2">Database management, data‑input automation, manual production and general IT assistance.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section>
+        <h2 class="section-title text-emerald-700">Education</h2>
+        <div class="relative pl-6 border-l-2 border-emerald-200 space-y-8">
+          <div class="relative">
+            <span class="timeline-dot bg-emerald-600"></span>
+            <h3 class="font-semibold">Hive Helsinki (42 Network)</h3>
+            <span class="text-sm text-emerald-600">Oct 2023 – Present • Helsinki</span>
+            <p class="text-sm mt-2">Intensive peer‑learning program focused on C, algorithms and software engineering fundamentals.</p>
+          </div>
+          <div class="relative">
+            <span class="timeline-dot bg-emerald-600"></span>
+            <h3 class="font-semibold">Tallinn University of Technology</h3>
+            <span class="text-sm text-emerald-600">Aug 2009 – Jun 2012 • Tallinn</span>
+            <p class="text-sm mt-2">BSc Computer Science (unfinished).</p>
+          </div>
+          <div class="relative">
+            <span class="timeline-dot bg-emerald-600"></span>
+            <h3 class="font-semibold">Gymnasium of Tarvastu</h3>
+            <span class="text-sm text-emerald-600">Sep 1997 – Jun 2009 • Viljandi</span>
+            <p class="text-sm mt-2">High‑school diploma • electives: Maths, English, Physics.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section>
+        <h2 class="section-title text-purple-700">Notable Projects</h2>
+        <div class="relative pl-6 border-l-2 border-purple-200 space-y-8">
+          <div class="relative">
+            <span class="timeline-dot bg-purple-600"></span>
+            <h3 class="font-semibold">Venttools – Ventilation Calculation Tool</h3>
+            <span class="text-sm text-purple-600">Private • 2020</span>
+            <p class="text-sm mt-2">Web tool (Angular + TS) providing accurate installation‑time estimates per Finnish TES standard.</p>
+            <a href="http://venttools.s3-website.eu-north-1.amazonaws.com/" class="text-purple-700 underline text-sm">Live demo</a>
+          </div>
+
+          <div class="relative">
+            <span class="timeline-dot bg-purple-600"></span>
+            <h3 class="font-semibold">ft_irc – Simple IRC Server</h3>
+            <span class="text-sm text-purple-600">Hive Helsinki • 2024</span>
+            <p class="text-sm mt-2">Collaborative C++17 IRC server implementing RFC 1459; supports multi‑channel chat and operator commands.</p>
+            <a href="https://github.com/wassaaa/ft_irc" class="text-purple-700 underline text-sm">GitHub</a>
+          </div>
+
+          <div class="relative">
+            <span class="timeline-dot bg-purple-600"></span>
+            <h3 class="font-semibold">miniRT – Ray‑Tracer</h3>
+            <span class="text-sm text-purple-600">Hive Helsinki • 2024</span>
+            <p class="text-sm mt-2">Compact C ray‑tracer exploring lighting, shading and reflections; educational graphics programming exercise.</p>
+            <a href="https://github.com/Wassaaa/miniRT" class="text-purple-700 underline text-sm">GitHub</a>
+          </div>
+
+          <div class="relative">
+            <span class="timeline-dot bg-purple-600"></span>
+            <h3 class="font-semibold">so_long – 2D Game</h3>
+            <span class="text-sm text-purple-600">Hive Helsinki • 2024</span>
+            <p class="text-sm mt-2">Tile‑based C game featuring animations, collision detection and collectables; expanded beyond spec for polish.</p>
+            <a href="https://github.com/Wassaaa/so_long" class="text-purple-700 underline text-sm">GitHub</a>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>
