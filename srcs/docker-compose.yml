@@ -28,6 +28,7 @@ services:
       - wordpress:/var/www/html
     networks:
       - inception
+    secrets: [mysql_pass, wp_admin_pass, wp_pass]
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb
@@ -39,6 +40,8 @@ services:
       - mariadb:/var/lib/mysql
     networks:
       - inception
+    secrets:
+      [mysql_root_pass, mysql_pass]
   redis:
     container_name: redis
     build: ./bonus/redis
@@ -60,6 +63,7 @@ services:
     ports:
       - "21:21"
       - "21000-21010:21000-21010"
+    secrets: [ftp_pass]
   adminer:
     container_name: adminer
     build: ./bonus/adminer
@@ -101,3 +105,9 @@ volumes:
 networks:
   inception:
     driver: bridge
+secrets:
+  mysql_root_pass:  {file: ../secrets/mysql_root_pass}
+  mysql_pass:       {file: ../secrets/mysql_pass}
+  wp_admin_pass:    {file: ../secrets/wp_admin_pass}
+  wp_pass:          {file: ../secrets/wp_pass}
+  ftp_pass:         {file: ../secrets/ftp_pass}

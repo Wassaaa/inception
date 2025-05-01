@@ -1,6 +1,11 @@
 #!/bin/sh
 set -euo pipefail
 
+# secrets
+MYSQL_PASS="$(cat /run/secrets/mysql_pass)"
+WP_ADMIN_PASS="$(cat /run/secrets/wp_admin_pass)"
+WP_PASS="$(cat /run/secrets/wp_pass)"
+
 # default WordPress path setup
 : "${WP_PATH:=/var/www/html}"
 export WP_PATH
@@ -23,7 +28,7 @@ if [ ! -f wp-config.php ]; then
 		--dbname=${MYSQL_DATABASE} \
 		--dbuser=${MYSQL_USER} \
 		--dbpass=${MYSQL_PASS} \
-		--dbhost=${MYSQL_HOST} \
+		--dbhost=mariadb \
 		--allow-root
 
     echo "Installing WordPress..."

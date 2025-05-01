@@ -7,7 +7,7 @@ WORDPRESS := $(DATADIR)/wordpress
 
 all: up
 
-up: $(MARIADB) $(WORDPRESS)
+up:  setup $(MARIADB) $(WORDPRESS)
 	@$(DOCKER_COMPOSE) up --build -d
 
 down:
@@ -19,6 +19,7 @@ clean:
 	@$(DOCKER_COMPOSE) down -v --rmi all
 
 fclean: clean
+	sudo rm -rf $(SECRETS_DIR)
 	sudo rm -rf $(DATADIR)
 
 ps:
@@ -31,11 +32,6 @@ logs:
 		SVC=$(filter-out $@,$(MAKECMDGOALS)) && \
 		$(DOCKER_COMPOSE) logs $$SVC; \
 	fi
-
-volumes:
-	docker volume ls
-	docker volume inspect srcs_mariadb
-	docker volume inspect srcs_wordpress
 
 run:
 	@if [ -z "$(filter-out $@,$(MAKECMDGOALS))" ]; then \
@@ -60,4 +56,15 @@ exec:
 $(MARIADB) $(WORDPRESS):
 	mkdir -p $@
 
-.PHONY: all up down re clean fclean ps logs volumes
+### ─────────────────────  secrets bootstrap  ──────────────────────
+SECRETS_DIR      = ./secrets
+SECRETS_SENTINEL := $(SECRETS_DIR)/.generated   # “done” stamp
+
+setup: $(SECRETS_SENTINEL)
+
+$(SECRETS_SENTINEL): srcs/setup.sh
+	@echo ">> running interactive setup to create secrets"
+	./srcs/setup.sh
+	@touch $(SECRETS_SENTINEL)
+
+.PHONY: all up down re clean fclean ps logs volumes setup
