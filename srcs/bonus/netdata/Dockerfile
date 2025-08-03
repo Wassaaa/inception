@@ -2,8 +2,8 @@ FROM alpine:3.20.6
 
 RUN apk add --no-cache netdata tzdata tini
 
-RUN mkdir -p /etc/netdata \
-    && printf '[web]\n  bind to = 0.0.0.0\n' > /etc/netdata/netdata.conf
+RUN mkdir -p /etc/netdata
+COPY ./conf/netdata.conf /etc/netdata/netdata.conf
 
 # Copy entrypoint script
 COPY ./entrypoint.sh /usr/local/bin/docker-entrypoint.sh
