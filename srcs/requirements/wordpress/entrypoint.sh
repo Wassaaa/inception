@@ -50,9 +50,7 @@ if [ ! -f wp-config.php ]; then
 		--allow-root
 
 	echo "installing theme..."
-		wp theme install neve --allow-root
-		wp theme activate neve --allow-root
-		wp theme update neve --allow-root
+		wp theme activate twentytwentyfive --allow-root
 
     else
         echo "User ${WP_USER} already exists, skipping creation."
