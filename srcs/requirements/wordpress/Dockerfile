@@ -42,7 +42,7 @@ RUN wget -q https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
  && ln -s /usr/local/bin/wp-cli.phar /usr/local/bin/wp
 
 EXPOSE 9000
-# tini becomes PID 1 → handles signals ↔ nginx quits cleanly
+# tini becomes PID 1 -> handles signals -> nginx quits cleanly
 ENTRYPOINT ["/sbin/tini","--","docker-entrypoint.sh"]
 # Default command ‑ may be overridden by `docker run … nginx -T`
 CMD ["php-fpm", "-F"]
