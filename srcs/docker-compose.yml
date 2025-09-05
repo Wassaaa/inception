@@ -61,7 +61,7 @@ services:
     networks:
       - inception
     ports:
-      - "21:21"
+      - "2121:21"
       - "21000-21010:21000-21010"
     secrets: [ftp_pass]
   adminer:
